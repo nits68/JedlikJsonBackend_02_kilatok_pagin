@@ -16,7 +16,7 @@ const options: SwaggerUiOptions = { swaggerOptions: { tryItOutEnabled: true } };
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 
 // Enabled CORS (Cross-Origin Resource Sharing):
-app.use(cors());
+app.use(cors({ exposedHeaders: ["number-of-records"] }));
 
 // Logger middleware: log all requests to the console
 app.use(morgan("dev"));

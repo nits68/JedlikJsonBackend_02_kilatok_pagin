@@ -15,7 +15,7 @@ app.use(express_1.default.json());
 const options = { swaggerOptions: { tryItOutEnabled: true } };
 app.use("/docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_output_json_1.default, options));
 // Enabled CORS (Cross-Origin Resource Sharing):
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({ exposedHeaders: ["number-of-records"] }));
 // Logger middleware: log all requests to the console
 app.use((0, morgan_1.default)("dev"));
 app.get("/api/viewpoints", async (req, res) => {
