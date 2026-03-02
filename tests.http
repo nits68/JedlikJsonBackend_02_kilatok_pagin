@@ -1,0 +1,4 @@
+### Example API endpoint rest client tests
+
+### 4. Search viewponts with pagination and filter
+GET http://localhost:3000/api/viewpoints/1/3/torony
