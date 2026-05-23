@@ -1,2 +1,16 @@
 [
+  {
+    "viewpointId": 1,
+    "rating": 5,
+    "email": "kiss.dora@mail.hu",
+    "comment": "Nagyon szép kilátás!",
+    "id": 1
+  },
+  {
+    "viewpointId": 1,
+    "rating": 6,
+    "email": "kiss.peter@mail.hu",
+    "comment": "Annyira nem szép!",
+    "id": 2
+  }
 ]

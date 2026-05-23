@@ -39,7 +39,33 @@ app.get("/api/viewpoints", async (req, res) => {
         }
     }
     catch (error) {
-        res.status(400).send({ message: error.message });
+        if (error instanceof Error) {
+            res.status(400).send({ message: error.message });
+        }
+        else {
+            res.status(400).send({ message: "Ismeretlen hiba történt!" });
+        }
+    }
+});
+app.get("/api/viewpoints2", async (req, res) => {
+    // #swagger.tags = ['Viewpoints']
+    // #swagger.summary = 'Az összes kilátó összes adatainak lekérdezése'
+    try {
+        const data = await readDataFromFile("viewpoints");
+        if (data) {
+            res.send(data);
+        }
+        else {
+            res.status(404).send({ message: "Hiba az adatok olvasásakor!" });
+        }
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            res.status(400).send({ message: error.message });
+        }
+        else {
+            res.status(400).send({ message: "Ismeretlen hiba történt!" });
+        }
     }
 });
 app.get("/api/viewpoints/:page/:limit/:filter", async (req, res) => {
@@ -70,7 +96,12 @@ app.get("/api/viewpoints/:page/:limit/:filter", async (req, res) => {
         }));
     }
     catch (error) {
-        res.status(400).send({ message: error.message });
+        if (error instanceof Error) {
+            res.status(400).send({ message: error.message });
+        }
+        else {
+            res.status(400).send({ message: "Ismeretlen hiba történt!" });
+        }
     }
 });
 app.get("/api/:locationName/viewpoints", async (req, res) => {
@@ -90,7 +121,12 @@ app.get("/api/:locationName/viewpoints", async (req, res) => {
         }
     }
     catch (error) {
-        res.status(400).send({ message: error.message });
+        if (error instanceof Error) {
+            res.status(400).send({ message: error.message });
+        }
+        else {
+            res.status(400).send({ message: "Ismeretlen hiba történt!" });
+        }
     }
 });
 app.get("/api/locations", async (req, res) => {
@@ -106,7 +142,34 @@ app.get("/api/locations", async (req, res) => {
         }
     }
     catch (error) {
-        res.status(400).send({ message: error.message });
+        if (error instanceof Error) {
+            res.status(400).send({ message: error.message });
+        }
+        else {
+            res.status(400).send({ message: "Unknown error occurred!" });
+        }
+    }
+});
+app.get("/api/rate/:id", async (req, res) => {
+    // #swagger.tags = ['Rates']
+    // #swagger.summary = 'A megadott id-jű kilátó értékeléseinek lekérdezése'
+    try {
+        const data = await readDataFromFile("rates");
+        const rates = data.filter(e => e.viewpointId === parseInt(req.params.id));
+        if (rates) {
+            res.send(rates);
+        }
+        else {
+            res.status(404).send({ message: "Az értékelés nem található!" });
+        }
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            res.status(400).send({ message: error.message });
+        }
+        else {
+            res.status(400).send({ message: "Ismeretlen hiba történt!" });
+        }
     }
 });
 app.post("/api/rate", async (req, res) => {
@@ -165,7 +228,12 @@ app.post("/api/rate", async (req, res) => {
         }
     }
     catch (error) {
-        res.status(400).send({ message: error.message });
+        if (error instanceof Error) {
+            res.status(400).send({ message: error.message });
+        }
+        else {
+            res.status(400).send({ message: "Ismeretlen hiba történt!" });
+        }
     }
 });
 // Read operation
@@ -212,7 +280,12 @@ async function readDataFromFile(table) {
         return JSON.parse(data);
     }
     catch (error) {
-        return [error.message];
+        if (error instanceof Error) {
+            return [error.message];
+        }
+        else {
+            return ["Ismeretlen hiba történt!"];
+        }
     }
 }
 async function saveDataToFile(table, data) {
@@ -221,7 +294,12 @@ async function saveDataToFile(table, data) {
         return "OK";
     }
     catch (error) {
-        return error.message;
+        if (error instanceof Error) {
+            return error.message;
+        }
+        else {
+            return "Ismeretlen hiba történt!";
+        }
     }
 }
 //# sourceMappingURL=backend.js.map

@@ -38,6 +38,26 @@
         }
       }
     },
+    "/api/viewpoints2": {
+      "get": {
+        "tags": [
+          "Viewpoints"
+        ],
+        "summary": "Az összes kilátó összes adatainak lekérdezése",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/api/viewpoints/{page}/{limit}/{filter}": {
       "get": {
         "tags": [
@@ -125,6 +145,36 @@
         ],
         "summary": "Hegységek lekérdezése",
         "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/rate/{id}": {
+      "get": {
+        "tags": [
+          "Rates"
+        ],
+        "summary": "A megadott id-jű kilátó értékeléseinek lekérdezése",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
